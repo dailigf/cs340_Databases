@@ -1,0 +1,22 @@
+{
+  "name": "cs340_databases",
+  "version": "1.0.0",
+  "description": "Repository for Databases",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dailigf/cs340_Databases.git"
+  },
+  "author": "Francis C. Dailig",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dailigf/cs340_Databases/issues"
+  },
+  "homepage": "https://github.com/dailigf/cs340_Databases#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
