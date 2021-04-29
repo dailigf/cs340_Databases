@@ -1,12 +1,12 @@
 <h1>Applications Information</h1>
 <p>
-	This page will display basic information about the applications in our system.
-	It also allows users to Add, Edit, and Delete applications in our system.
+	This page will display basic information about the Applications in our system.
+	It also allows users to Add, Edit, and Delete Applications in our system.
 </p>
 
 <div>
 	<h2>
-		Add a new application:
+		Add a new Application:
 	</h2>
 	<form action="">
 		<input type="text" placeholder="Name of application">
@@ -15,19 +15,19 @@
 	</form>
 </div>
 <div>
-	<h2>Display all applications:</h2>
+	<h2>Display all Applications:</h2>
 	<table style="border 1px solid black">
-	<thead>
-		<tr>
-			<th style="border: 1px solid black">appID</th>
-			<th style="border: 1px solid black">appName</th>
-			<th style="border: 1px solid black">appType</th>
-			<th style="border: 1px solid black">Edit</th>
-			<th style="border: 1px solid black">Delete</th>			
-		</tr>
-	</thead>
-	<tbody>
-		{{#each dataList}}
+		<thead>
+			<tr>
+				<th style="border: 1px solid black">appID</th>
+				<th style="border: 1px solid black">appName</th>
+				<th style="border: 1px solid black">appType</th>
+				<th style="border: 1px solid black">Edit</th>
+				<th style="border: 1px solid black">Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each dataList}}
 			<tr>
 				<td style="border: 1px solid black">{{this.appID}}</td>
 				<td style="border: 1px solid black">{{this.appName}}</td>
@@ -36,8 +36,7 @@
 				<td style="border: 1px solid black"><button>Delete</button></td>
 
 			</tr>
-		{{/each}}
-	</tbody>
+			{{/each}}
+		</tbody>
 	</table>
 </div>
-

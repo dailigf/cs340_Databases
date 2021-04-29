@@ -1,34 +1,34 @@
 <h1>Guides Information</h1>
 <p>
-	This page will display basic information about the guides in our system.
-	It also allows users to Add, Edit, and Delete guides in our system.
+	This page will display basic information about the Guides in our system.
+	It also allows users to Add, Edit, and Delete Guides in our system.
 </p>
 
 <div>
 	<h2>
-		Add a new guide:
+		Add a new Guide:
 	</h2>
 	<form action="">
-		<input type="text" placeholder="Name of guide">
+		<input type="text" placeholder="guideName">
 		<input type="text" placeholder="appID">
 		<input type="submit" value="Add guide">
 	</form>
 </div>
 
 <div>
-	<h2>Display all guides:</h2>
+	<h2>Display all Guides:</h2>
 	<table style="border 1px solid black">
-	<thead>
-		<tr>
-			<th style="border: 1px solid black">guideID</th>
-			<th style="border: 1px solid black">guideName</th>
-			<th style="border: 1px solid black">appID</th>
-			<th style="border: 1px solid black">Edit</th>
-			<th style="border: 1px solid black">Delete</th>
-		</tr>
-	</thead>
-	<tbody>
-		{{#each dataList}}
+		<thead>
+			<tr>
+				<th style="border: 1px solid black">guideID</th>
+				<th style="border: 1px solid black">guideName</th>
+				<th style="border: 1px solid black">appID</th>
+				<th style="border: 1px solid black">Edit</th>
+				<th style="border: 1px solid black">Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each dataList}}
 			<tr>
 				<td style="border: 1px solid black">{{this.guideID}}</td>
 				<td style="border: 1px solid black">{{this.guideName}}</td>
@@ -36,8 +36,7 @@
 				<td style="border: 1px solid black"><button>Edit</button></td>
 				<td style="border: 1px solid black"><button>Delete</button></td>
 			</tr>
-		{{/each}}
-	</tbody>
+			{{/each}}
+		</tbody>
 	</table>
 </div>
-

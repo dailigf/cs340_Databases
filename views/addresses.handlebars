@@ -1,0 +1,41 @@
+<h1>Addresses Information</h1>
+<p>
+	This page will allow users display basic information about the Addresses in our system.
+	It also allows users to Add, Edit, and Delete Addresses in our system.
+</p>
+
+<div>
+	<h2>
+		Add a new Address:
+	</h2>
+	<form action="">
+		<input type="text" placeholder="IP Address">
+		<input type="text" placeholder="workstationID">
+		<input type="submit" value="Add Address">
+	</form>
+</div>
+<div>
+	<h2>Display all Addresses:</h2>
+	<table style="border 1px solid black">
+		<thead>
+			<tr>
+				<th style="border: 1px solid black">addressID</th>
+				<th style="border: 1px solid black">ip</th>
+				<th style="border: 1px solid black">workstationID</th>
+				<th style="border: 1px solid black">Edit</th>
+				<th style="border: 1px solid black">Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each dataList}}
+			<tr>
+				<td style="border: 1px solid black">{{this.addressID}}</td>
+				<td style="border: 1px solid black">{{this.ip}}</td>
+				<td style="border: 1px solid black">{{this.workstationID}}</td>
+				<td style="border: 1px solid black"><button>Edit</button></td>
+				<td style="border: 1px solid black"><button>Delete</button></td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,41 @@
+<h1>Control_Instances Information</h1>
+<p>
+	This page will allow users display basic information about the Control_Instances in our system.
+	It also allows users to Add, Edit, and Delete Control_Instances in our system.
+</p>
+
+<div>
+	<h2>
+		Add a new Control_Instance:
+	</h2>
+	<form action="">
+		<input type="number" placeholder="controlID">
+		<input type="text" placeholder="guideID">
+		<input type="submit" value="Add Control_Instance">
+	</form>
+</div>
+<div>
+	<h2>Display all Control_Instances:</h2>
+	<table style="border 1px solid black">
+		<thead>
+			<tr>
+				<th style="border: 1px solid black">controlInstanceID</th>
+				<th style="border: 1px solid black">controlID</th>
+				<th style="border: 1px solid black">guideID</th>
+				<th style="border: 1px solid black">Edit</th>
+				<th style="border: 1px solid black">Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each dataList}}
+			<tr>
+				<td style="border: 1px solid black">{{this.controlInstanceID}}</td>
+				<td style="border: 1px solid black">{{this.controlID}}</td>
+				<td style="border: 1px solid black">{{this.guideID}}</td>
+				<td style="border: 1px solid black"><button>Edit</button></td>
+				<td style="border: 1px solid black"><button>Delete</button></td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</div>

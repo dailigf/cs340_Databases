@@ -1,36 +1,36 @@
-<h1>Applications Information</h1>
+<h1>Controls Information</h1>
 <p>
-	This page will display basic information about the controls in our system.
-	It also allows users to Add, Edit, and Delete controls in our system.
+	This page will display basic information about the Controls in our system.
+	It also allows users to Add, Edit, and Delete Controls in our system.
 </p>
 
 <div>
 	<h2>
-		Add a new control:
+		Add a new Control:
 	</h2>
 	<form action="">
-		<input type="number" placeholder="Security control #">
-		<input type="text" placeholder="Name of control">
-		<input type="text" placeholder="Description of the control">
+		<input type="number" placeholder="securityControlNumber">
+		<input type="text" placeholder="controlName">
+		<input type="text" placeholder="description">
 		<input type="submit" value="Add control">
 	</form>
 </div>
 
 <div>
-	<h2>Display all controls:</h2>
+	<h2>Display all Controls:</h2>
 	<table style="border 1px solid black">
-	<thead>
-		<tr>
-			<th style="border: 1px solid black">controlID</th>
-			<th style="border: 1px solid black">securityControlNumber</th>
-			<th style="border: 1px solid black">controlName</th>
-			<th style="border: 1px solid black">description</th>
-			<th style="border: 1px solid black">Edit</th>
-			<th style="border: 1px solid black">Delete</th>
-		</tr>
-	</thead>
-	<tbody>
-		{{#each dataList}}
+		<thead>
+			<tr>
+				<th style="border: 1px solid black">controlID</th>
+				<th style="border: 1px solid black">securityControlNumber</th>
+				<th style="border: 1px solid black">controlName</th>
+				<th style="border: 1px solid black">description</th>
+				<th style="border: 1px solid black">Edit</th>
+				<th style="border: 1px solid black">Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each dataList}}
 			<tr>
 				<td style="border: 1px solid black">{{this.controlID}}</td>
 				<td style="border: 1px solid black">{{this.securityControlNumber}}</td>
@@ -39,8 +39,7 @@
 				<td style="border: 1px solid black"><button>Edit</button></td>
 				<td style="border: 1px solid black"><button>Delete</button></td>
 			</tr>
-		{{/each}}
-	</tbody>
+			{{/each}}
+		</tbody>
 	</table>
 </div>
-
