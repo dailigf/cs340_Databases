@@ -1,9 +1,23 @@
 <h1>Workstation Information</h1>
 <p>
-	This page will display basic information about the workstations in our system.
+	This page will allow users display basic information about the workstations in our system.
+	It also allows users to Add, Edit, and Delete workstations in our system.
 </p>
 
-<table style="border 1px solid black">
+<div>
+	<h2>
+		Add a new workstation:
+	</h2>
+	<form action="">
+		<input type="text" placeholder="Hostname">
+		<input type="text" placeholder="IP Address">
+		<input type="text" placeholder="Operating System">
+		<input type="submit" value="Add workstation">
+	</form>
+</div>
+<div>
+	<h2>Display all workstations:</h2>
+	<table style="border 1px solid black">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black">workstationID</th>
@@ -26,4 +40,6 @@
 			</tr>
 		{{/each}}
 	</tbody>
-</table>
+	</table>
+</div>
+

@@ -1,9 +1,22 @@
 <h1>Applications Information</h1>
 <p>
 	This page will display basic information about the applications in our system.
+	It also allows users to Add, Edit, and Delete applications in our system.
 </p>
 
-<table style="border 1px solid black">
+<div>
+	<h2>
+		Add a new application:
+	</h2>
+	<form action="">
+		<input type="text" placeholder="Name of application">
+		<input type="text" placeholder="Type of application">
+		<input type="submit" value="Add application">
+	</form>
+</div>
+<div>
+	<h2>Display all applications:</h2>
+	<table style="border 1px solid black">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black">appID</th>
@@ -25,4 +38,6 @@
 			</tr>
 		{{/each}}
 	</tbody>
-</table>
+	</table>
+</div>
+

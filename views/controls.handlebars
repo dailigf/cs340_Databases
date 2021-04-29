@@ -1,9 +1,24 @@
 <h1>Applications Information</h1>
 <p>
 	This page will display basic information about the controls in our system.
+	It also allows users to Add, Edit, and Delete controls in our system.
 </p>
 
-<table style="border 1px solid black">
+<div>
+	<h2>
+		Add a new control:
+	</h2>
+	<form action="">
+		<input type="number" placeholder="Security control #">
+		<input type="text" placeholder="Name of control">
+		<input type="text" placeholder="Description of the control">
+		<input type="submit" value="Add control">
+	</form>
+</div>
+
+<div>
+	<h2>Display all controls:</h2>
+	<table style="border 1px solid black">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black">controlID</th>
@@ -26,4 +41,6 @@
 			</tr>
 		{{/each}}
 	</tbody>
-</table>
+	</table>
+</div>
+

@@ -1,9 +1,23 @@
-<h1>Applications Information</h1>
+<h1>Guides Information</h1>
 <p>
 	This page will display basic information about the guides in our system.
+	It also allows users to Add, Edit, and Delete guides in our system.
 </p>
 
-<table style="border 1px solid black">
+<div>
+	<h2>
+		Add a new guide:
+	</h2>
+	<form action="">
+		<input type="text" placeholder="Name of guide">
+		<input type="text" placeholder="appID">
+		<input type="submit" value="Add guide">
+	</form>
+</div>
+
+<div>
+	<h2>Display all guides:</h2>
+	<table style="border 1px solid black">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black">guideID</th>
@@ -24,4 +38,6 @@
 			</tr>
 		{{/each}}
 	</tbody>
-</table>
+	</table>
+</div>
+
