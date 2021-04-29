@@ -33,22 +33,42 @@ app.get('/index.html', function(req, res){
 });
 app.get('/workstations', function(req, res){
 	var testData = [
-		{'name': 'dailigMac', 'os': 'MacOS', 'ip': '192.168.1.2'},
-		{'name': 'walshMac', 'os': 'MacOS', 'ip': '192.168.1.3'}
+		{'workstationID': 1, 'name': 'dailigMac', 'os': 'MacOS', 'ip': '192.168.1.2'},
+		{'workstationID': 2,'name': 'walshMac', 'os': 'MacOS', 'ip': '192.168.1.3'}
 	];
 
 	var context = {};
 	context.dataList = testData
 	res.render('workstations.handlebars', context);
 });
-app.get('/view2', function(req, res){
-	res.render('view2.handlebars');
+app.get('/applications', function(req, res){
+	var testData = [
+		{'appID': '1', 'appName': 'spotify', 'appType': 'music'},
+		{'appID': '2', 'appName': 'youtube', 'appType': 'video'}
+	];
+
+	var context = {};
+	context.dataList = testData
+	res.render('applications.handlebars', context);
 });
-app.get('/view3', function(req, res){
-	res.render('view3.handlebars');
+
+app.get('/guides', function(req, res){
+	var testData = [
+		{'guideID': '1', 'guideName': 'guide1', 'appID': 1},
+		{'guideID': '2', 'guideName': 'guide2', 'appID': 2}
+	];
+	var context = {};
+	context.dataList = testData
+	res.render('guides.handlebars', context);
 });
-app.get('/view4', function(req, res){
-	res.render('view4.handlebars');
+app.get('/controls', function(req, res){
+	var testData = [
+		{'controlID': '1', 'securityControlNumber': 1, 'controlName': 'control1', 'description': 'This control does this!'},
+		{'controlID': '2', 'securityControlNumber': 2, 'controlName': 'control2', 'description': 'This control does this!'}
+	];
+	var context = {};
+	context.dataList = testData
+	res.render('controls.handlebars', context);
 });
 app.get('/view5', function(req, res){
 	res.render('view5.handlebars');
