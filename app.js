@@ -92,7 +92,8 @@ app.get('/control_instances', function (req, res) {
 app.get('/addresses', function (req, res) {
 	var testData = [
 		{ 'addressID': 1, 'ip': '192.168.1.2', 'workstationID': 1 },
-		{ 'addressID': 2, 'ip': '192.168.1.3', 'workstationID': 2 }
+		{ 'addressID': 2, 'ip': '192.168.1.3', 'workstationID': 2 },
+		{ 'addressID': 3, 'ip': '192.168.1.4', 'workstationID': NULL }
 	];
 	var context = {};
 	context.dataList = testData
