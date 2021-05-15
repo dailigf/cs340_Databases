@@ -16,10 +16,16 @@
 	<h2>
 		Add a new Workstation:
 	</h2>
-	<form action="">
-		<input type="text" placeholder="hostName">
-		<input type="text" placeholder="os">
-		<input type="submit" value="Add workstation">
+	<form action="/workstations" method="post">
+		<input type="text" name="hostName" placeholder="hostName">
+		<label for="hostName">Hostname: </label>
+		<select name="os">
+			{{#each operatingSystems}}
+				<option value="{{appName}}">{{appName}}</option>
+			{{/each}}
+		</select>
+		<label for="os">Operating System: </label>
+		<input type="submit" value="Submit">
 	</form>
 </div>
 <div>
@@ -35,12 +41,12 @@
 			</tr>
 		</thead>
 		<tbody>
-			{{#each dataList}}
+			{{#each workstations}}
 			<tr>
 				<td style="border: 1px solid black">{{this.workstationID}}</td>
 				<td style="border: 1px solid black">{{this.hostName}}</td>
 				<td style="border: 1px solid black">{{this.os}}</td>
-				<td style="border: 1px solid black"><button>Edit</button></td>
+				<td style="border: 1px solid black" id="workstation{{this.workstationID}}EditButton"><button>Edit</button></td>
 				<td style="border: 1px solid black"><button>Delete</button></td>
 			</tr>
 			{{/each}}

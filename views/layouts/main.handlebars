@@ -2,6 +2,9 @@
 <html>
 <head>
 <title>My Page</title>
+	{{#each jsscript}}
+	<script src="/static{{this}}"></script>
+	{{/each}}
 </head>
 <body>
 	{{{body}}}
