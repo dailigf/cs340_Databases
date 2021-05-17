@@ -13,47 +13,49 @@
 		<input type="text" name="searchString" id="searchString" placeholder="string to search">
 		<input type="submit" value="Submit" id="search-btn">
 	</form>
-	</div id="searchResults">
-		{{#if workstation}}
-		<h2>Search Results</h2>
-		<table style="border 1px solid black">
-			<thead>
-				<tr>
-					<th style="border: 1px solid black">workstationID</th>
-					<th style="border: 1px solid black">Hostname</th>
-					<th style="border: 1px solid black">Operating System</th>
-					<th style="border: 1px solid black">Edit</th>
-					<th style="border: 1px solid black">Delete</th>
-				</tr>
-			</thead>
-			<tbody>
-				{{#each workstation}}
-				<tr>
-					<td style="border: 1px solid black">{{this.workstationID}}</td>
-					<td style="border: 1px solid black">{{this.hostName}}</td>
-					<td style="border: 1px solid black">{{this.os}}</td>
-					<td style="border: 1px solid black"><a href="/workstations/{{this.workstationID}}">Update</a></td>
-					<td style="border: 1px solid black" onclick="deleteWorkstation({{this.workstationID}})"><button>Delete</button></td>
-				</tr>
-				{{/each}}
-			</tbody>
-		</table>
-		{{/if}}
-	</div>
-	<h2>
-		Add a new Workstation:
-	</h2>
-	<form action="/workstations" method="post">
-		<label for="hostName">Hostname: </label>
-		<input type="text" name="hostName" placeholder="hostName">
-		<label for="os">Operating System: </label>
-		<select name="os">
-			{{#each operatingSystems}}
-			<option value="{{appName}}">{{appName}}</option>
-			{{/each}}
-		</select>
-		<input type="submit" value="Submit">
-	</form>
+</div id="searchResults">
+{{#if workstation}}
+<h2>Search Results</h2>
+<table style="border 1px solid black">
+	<thead>
+		<tr>
+			<th style="border: 1px solid black">workstationID</th>
+			<th style="border: 1px solid black">Hostname</th>
+			<th style="border: 1px solid black">Operating System</th>
+			<th style="border: 1px solid black">Edit</th>
+			<th style="border: 1px solid black">Delete</th>
+		</tr>
+	</thead>
+	<tbody>
+		{{#each workstation}}
+		<tr>
+			<td style="border: 1px solid black">{{this.workstationID}}</td>
+			<td style="border: 1px solid black">{{this.hostName}}</td>
+			<td style="border: 1px solid black">{{this.os}}</td>
+			<td style="border: 1px solid black"><a href="/workstations/{{this.workstationID}}">Update</a></td>
+			<td style="border: 1px solid black" onclick="deleteWorkstation({{this.workstationID}})">
+				<button>Delete</button>
+			</td>
+		</tr>
+		{{/each}}
+	</tbody>
+</table>
+{{/if}}
+</div>
+<h2>
+	Add a new Workstation:
+</h2>
+<form action="/workstations" method="post">
+	<label for="hostName">Hostname: </label>
+	<input type="text" name="hostName" placeholder="hostName">
+	<label for="os">Operating System: </label>
+	<select name="os">
+		{{#each operatingSystems}}
+		<option value="{{appName}}">{{appName}}</option>
+		{{/each}}
+	</select>
+	<input type="submit" value="Submit">
+</form>
 </div>
 <div>
 	<h2>Display all Workstations:</h2>
@@ -74,11 +76,9 @@
 				<td style="border: 1px solid black">{{this.hostName}}</td>
 				<td style="border: 1px solid black">{{this.os}}</td>
 				<td style="border: 1px solid black"><a href="/workstations/{{this.workstationID}}">Update</a></td>
-				<td style="border: 1px solid black" onclick="deleteWorkstation({{this.workstationID}})"><button>Delete</button></td>
-				<td style="border: 1px solid black" id="workstation{{this.workstationID}}EditButton">
-					<button>Edit</button>
+				<td style="border: 1px solid black" onclick="deleteWorkstation({{this.workstationID}})">
+					<button>Delete</button>
 				</td>
-				<td style="border: 1px solid black"><button>Delete</button></td>
 			</tr>
 			{{/each}}
 		</tbody>
