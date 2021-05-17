@@ -1,0 +1,55 @@
+<h1>Workstation Information</h1>
+<p>
+	This page will allow users display basic information about the Workstations in our system.
+	It also allows users to Add, Edit, and Delete Workstations in our system.
+</p>
+
+<div>
+	<h2>
+		Search for a Workstation
+	</h2>
+	<form action="/workstations/search" method="get">
+		<label for="searchString">Search</label>
+		<input type="text" id="searchString" name="searchString" placeholder="string to search">
+		<input type="submit">
+	</form>
+	<h2>
+		Add a new Workstation:
+	</h2>
+	<form action="/workstations" method="post">
+		<input type="text" name="hostName" placeholder="hostName">
+		<label for="hostName">Hostname: </label>
+		<select name="os">
+			{{#each operatingSystems}}
+				<option value="{{appName}}">{{appName}}</option>
+			{{/each}}
+		</select>
+		<label for="os">Operating System: </label>
+		<input type="submit" value="Submit">
+	</form>
+</div>
+<div>
+	<h2>Display all Workstations:</h2>
+	<table style="border 1px solid black">
+		<thead>
+			<tr>
+				<th style="border: 1px solid black">workstationID</th>
+				<th style="border: 1px solid black">Hostname</th>
+				<th style="border: 1px solid black">Operating System</th>
+				<th style="border: 1px solid black">Edit</th>
+				<th style="border: 1px solid black">Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each workstations}}
+			<tr>
+				<td style="border: 1px solid black">{{this.workstationID}}</td>
+				<td style="border: 1px solid black">{{this.hostName}}</td>
+				<td style="border: 1px solid black">{{this.os}}</td>
+				<td style="border: 1px solid black"><a href="/workstations/{{this.workstationID}}">Update</a></td>
+				<td style="border: 1px solid black" onclick="deleteWorkstation({{this.workstationID}})"><button>Delete</button></td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,11 @@
+<h1>Update {{workstation.hostName}}:</h1>
+<form id="update-workstation" action="/workstations/{{workstation.workstationID}}" method="post">
+	Host Name: <input type="text" name="hostName" value="{{workstation.hostName}}"><br>
+    	Operating System: <select name="os" id="os-selector"> 
+        	{{#each operatingSystems}}
+        	<option value="{{appName}}">{{appName}}</option>
+        	{{/each}}
+    	</select><br>
+</form>
+<button onclick="updateWorkstation({{workstation.workstationID}})">Update</button>
+<script defer>selectOS("{{workstation.os}}");</script>
