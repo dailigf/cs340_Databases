@@ -1,0 +1,11 @@
+<h1>Update {{control.securityControlID}} - {{control.controlName}}:</h1>
+<form id="update-control" action="/controls/{{control.controlID}}" method="post">
+	Control Name: <input type="text" name="controlName" value={{control.controlName}}><br>
+	Description:<br> <textarea id="inputdesc" name="description">{{control.description}}</textarea><br>
+	<input type="hidden" name="controlID" value="{{control.controlID}}">
+	<input type="submit" value="Submit">
+</form>
+<!--
+<button onclick="updateWorkstation({{workstation.workstationID}})">Update</button>
+<script defer>selectOS("{{workstation.os}}");</script>
+-->

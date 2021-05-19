@@ -7,6 +7,10 @@
 	{{#each jsscripts}}
 	<script src="/static/{{this}}"></script>
 	{{/each}}
+
+	{{#if css}}
+	<link type="text/css" rel="stylesheet" href="/static/{{css}}"></link>
+	{{/if}}
 </head>
 <body>
 	{{{body}}}

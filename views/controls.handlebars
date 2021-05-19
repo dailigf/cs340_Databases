@@ -8,11 +8,14 @@
 	<h2>
 		Add a new Control:
 	</h2>
-	<form action="">
-		<input type="number" placeholder="securityControlNumber">
-		<input type="text" placeholder="controlName">
-		<input type="text" placeholder="description">
-		<input type="submit" value="Add control">
+	<form action="/controls" method="post">
+		<label for="securityControlID">Security Control ID: </label>
+		<input type="text" name="securityControlID" placeholder="securityControlID" required><br>
+		<label for="controlName">Control Name: </label>
+		<input type="text" name="controlName" placeholder="controlName" required><br>
+		<label for="description">Description: </label><br>
+		<textarea name="description" placeholder="description" id="inputdesc" required></textarea><br>
+		<input type="submit" value="Submit">
 	</form>
 </div>
 
@@ -22,7 +25,7 @@
 		<thead>
 			<tr>
 				<th style="border: 1px solid black">controlID</th>
-				<th style="border: 1px solid black">securityControlNumber</th>
+				<th style="border: 1px solid black">securityControlID</th>
 				<th style="border: 1px solid black">controlName</th>
 				<th style="border: 1px solid black">description</th>
 				<th style="border: 1px solid black">Edit</th>
@@ -30,14 +33,14 @@
 			</tr>
 		</thead>
 		<tbody>
-			{{#each dataList}}
+			{{#each controls}}
 			<tr>
 				<td style="border: 1px solid black">{{this.controlID}}</td>
-				<td style="border: 1px solid black">{{this.securityControlNumber}}</td>
+				<td style="border: 1px solid black">{{this.securityControlID}}</td>
 				<td style="border: 1px solid black">{{this.controlName}}</td>
 				<td style="border: 1px solid black">{{this.description}}</td>
-				<td style="border: 1px solid black"><button>Edit</button></td>
-				<td style="border: 1px solid black"><button>Delete</button></td>
+				<td style="border: 1px solid black"><a href="/controls/{{this.controlID}}">Update</a></td>
+				<td style="border: 1px solid black" onclick="deleteControl({{this.controlID}})"><button>Delete</button></td>
 			</tr>
 			{{/each}}
 		</tbody>

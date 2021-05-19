@@ -35,6 +35,7 @@ app.get('/index.html', function (req, res) {
 	res.render('index.handlebars');
 });
 app.use('/workstations', require('./workstations.js'));
+app.use('/controls', require('./controls.js'));
 /*
 app.get('/workstations', function (req, res) {
 	var testData = [
@@ -67,6 +68,7 @@ app.get('/guides', function (req, res) {
 	context.dataList = testData
 	res.render('guides.handlebars', context);
 });
+/*
 app.get('/controls', function (req, res) {
 	var testData = [
 		{ 'controlID': 1, 'securityControlNumber': 1, 'controlName': 'control1', 'description': 'This control does this!' },
@@ -76,6 +78,7 @@ app.get('/controls', function (req, res) {
 	context.dataList = testData
 	res.render('controls.handlebars', context);
 });
+*/
 app.get('/app_instances', function (req, res) {
 	var testData = [
 		{ 'appInstanceID': 1, 'workstationID': 1, 'appID': 1 },
