@@ -8,10 +8,17 @@
 	<h2>
 		Add a new Address:
 	</h2>
-	<form action="">
-		<input type="text" placeholder="IP Address">
-		<input type="text" placeholder="workstationID">
-		<input type="submit" value="Add Address">
+	<form action="/addresses" method="post">
+		<label for="ip">ip address:</label>
+		<input type="text" name="ip" placeholder="ip address">
+		<label for="workstationID"></label>
+		<select name="workstationID">
+			{{#each workstations}}
+			<option value="{{workstationID}}">{{workstationID}}</option>
+			{{/each}}
+			<option value="NULL">NULL</option>
+		</select> 
+		<input type="submit" value="Submit">
 	</form>
 </div>
 <div>
@@ -27,12 +34,14 @@
 			</tr>
 		</thead>
 		<tbody>
-			{{#each dataList}}
+			{{#each addresses}}
 			<tr>
 				<td style="border: 1px solid black">{{this.addressID}}</td>
 				<td style="border: 1px solid black">{{this.ip}}</td>
 				<td style="border: 1px solid black">{{this.workstationID}}</td>
-				<td style="border: 1px solid black"><button>Edit</button></td>
+				<td style="border: 1px solid black" id="address{{this.addressID}}EditButton">
+					<button>Edit</button>
+				</td>
 				<td style="border: 1px solid black"><button>Delete</button></td>
 			</tr>
 			{{/each}}

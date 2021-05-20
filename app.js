@@ -13,7 +13,7 @@ app.engine('handlebars', handlebars.engine);
 app.set('view engine', handlebars);
 app.set('port', 31337);
 app.use('/static', express.static('public'));
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 var db = require('./database/db_connector');
 app.set('mysql', db);
@@ -36,6 +36,7 @@ app.get('/index.html', function (req, res) {
 });
 app.use('/workstations', require('./workstations.js'));
 app.use('/controls', require('./controls.js'));
+app.use('/addresses', require('./addresses.js'));
 /*
 app.get('/workstations', function (req, res) {
 	var testData = [
@@ -97,7 +98,7 @@ app.get('/control_instances', function (req, res) {
 	context.dataList = testData
 	res.render('control_instances.handlebars', context);
 });
-
+/*
 app.get('/addresses', function (req, res) {
 	var testData = [
 		{ 'addressID': 1, 'ip': '192.168.1.2', 'workstationID': 1 },
@@ -108,7 +109,7 @@ app.get('/addresses', function (req, res) {
 	context.dataList = testData
 	res.render('addresses.handlebars', context);
 });
-
+*/
 /*
 	LISTENER
 */
