@@ -35,6 +35,7 @@ app.get('/index.html', function (req, res) {
 	res.render('index.handlebars');
 });
 app.use('/workstations', require('./workstations.js'));
+app.use('/addresses', require('./addresses.js'));
 /*
 app.get('/workstations', function (req, res) {
 	var testData = [
@@ -94,7 +95,7 @@ app.get('/control_instances', function (req, res) {
 	context.dataList = testData
 	res.render('control_instances.handlebars', context);
 });
-
+/*
 app.get('/addresses', function (req, res) {
 	var testData = [
 		{ 'addressID': 1, 'ip': '192.168.1.2', 'workstationID': 1 },
@@ -105,7 +106,7 @@ app.get('/addresses', function (req, res) {
 	context.dataList = testData
 	res.render('addresses.handlebars', context);
 });
-
+*/
 /*
 	LISTENER
 */
