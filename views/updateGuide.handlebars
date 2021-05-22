@@ -1,0 +1,15 @@
+<h1>Update {{guide.guideName}}:</h1>
+<form id="update-guide" action="/guides/{{guide.guideID}}" method="post">
+	Guide Name: <input = "text" id="guide-selector" name="guideName" value=""><br>
+	Mapped App: <select name="appName" id="app-selector">
+		{{#each App}}
+		<option value="{{appName}}">{{appName}}</option>
+		{{/each}}
+	</select>
+</form>
+<button onclick="updateGuide({{guide.guideID}})">Update</button>
+<script defer>selectApp("{{guide.appName}}")</script>
+<script defer>selectName("{{guide.guideName}}")</script>
+<!--
+<button onclick="updateWorkstation({{workstation.workstationID}})">Update</button>
+-->

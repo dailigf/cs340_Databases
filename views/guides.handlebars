@@ -7,10 +7,16 @@
 <div>
 	<h2>
 		Add a new Guide:
+		<p>Note: you can only add/map a guide to an applications that does not have a guide associated to it.</p>
 	</h2>
-	<form action="">
-		<input type="text" placeholder="guideName">
-		<input type="text" placeholder="appID">
+	<form action="/guides" method="post">
+		<label for="guideName">Guide Name:</label>
+		<input type="text" name="guideName" placeholder="guideName">
+
+		<select name="appID">
+		{{#each App}}
+			<option value="{{appID}}">{{appName}}</option>	
+		{{/each}}
 		<input type="submit" value="Add guide">
 	</form>
 </div>
@@ -28,13 +34,13 @@
 			</tr>
 		</thead>
 		<tbody>
-			{{#each dataList}}
+			{{#each guide}}
 			<tr>
 				<td style="border: 1px solid black">{{this.guideID}}</td>
 				<td style="border: 1px solid black">{{this.guideName}}</td>
 				<td style="border: 1px solid black">{{this.appID}}</td>
-				<td style="border: 1px solid black"><button>Edit</button></td>
-				<td style="border: 1px solid black"><button>Delete</button></td>
+				<td style="border: 1px solid black"><a href="/guides/{{this.guideID}}">Update</a></td>
+				<td style="border: 1px solid black" onclick="deleteGuide({{this.guideID}})"><button>Delete</button></td>
 			</tr>
 			{{/each}}
 		</tbody>
