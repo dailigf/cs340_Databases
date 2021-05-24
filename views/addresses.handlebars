@@ -11,7 +11,7 @@
 	<form action="/addresses" method="post">
 		<label for="ip">ip address:</label>
 		<input type="text" name="ip" placeholder="ip address">
-		<label for="workstationID"></label>
+		<label for="workstationID"> workstationID:</label>
 		<select name="workstationID">
 			{{#each workstations}}
 			<option value="{{workstationID}}">{{workstationID}}</option>
@@ -39,10 +39,10 @@
 				<td style="border: 1px solid black">{{this.addressID}}</td>
 				<td style="border: 1px solid black">{{this.ip}}</td>
 				<td style="border: 1px solid black">{{this.workstationID}}</td>
-				<td style="border: 1px solid black" id="address{{this.addressID}}EditButton">
-					<button>Edit</button>
+				<td style="border: 1px solid black"><a href="/addresses/{{this.addressID}}">Update</a></td>
+				<td style="border: 1px solid black" onclick="deleteAddress({{this.addressID}})">
+					<button>Delete</button>
 				</td>
-				<td style="border: 1px solid black"><button>Delete</button></td>
 			</tr>
 			{{/each}}
 		</tbody>

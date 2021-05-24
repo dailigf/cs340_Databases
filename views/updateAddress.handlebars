@@ -1,0 +1,12 @@
+<h1>Update {{address.ip}}:</h1>
+<form id="update-address" action="/addresses/{{address.addressID}}" method="post">
+    IP address: <input type="text" name="ip" value="{{address.ip}}"><br>
+    workstationID: <select name="workstationID" id="workstation-selector">
+        {{#each workstations}}
+        <option value="{{this.workstationID}}">{{this.workstationID}}</option>
+        {{/each}}
+        <option value="">NULL</option>
+    </select>
+</form>
+<button onclick="updateAddress({{address.addressID}})">Update</button>
+<script defer>selectWorkstation("{{address.workstationID}}");</script>
