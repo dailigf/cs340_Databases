@@ -13,7 +13,7 @@ module.exports = function(){
             console.log(context.applications);
 			complete();
 		})
-    };
+    }
 
     router.get('/', function(req, res){
         console.log("inside router.get for applications");
