@@ -1,0 +1,16 @@
+<h1>Update {{App_Instance.appInstanceID}}:</h1>
+<form id="update-App_Instances" action="/app_instances/{{App_Instance.appInstanceID}}" method="post">
+    Workstation: <select name="workstationID" id="workstation-selector">
+        {{#each workstations}}
+        <option value="{{this.workstationID}}">{{this.workstationID}} - {{this.hostName}}</option>
+        {{/each}}
+    </select>
+    Application: <select name="appID" id="application-selector">
+        {{#each applications}}
+        <option value="{{this.appID}}">{{this.appID}} - {{this.appName}}</option>
+        {{/each}}
+    </select>
+</form>
+<button onclick="updateApp_Instances({{App_Instance.appInstanceID}})">Update</button>
+<script defer>selectWorkstation("{{App_Instance.workstationID}}");</script>
+<script defer>selectApplication("{{App_Instance.appID}}");</script>

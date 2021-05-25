@@ -13,7 +13,7 @@ module.exports = function () {
             console.log(context.workstations);
             complete();
         })
-    };
+    }
 
     function getAddress(res, mysql, context, id, complete) {
         var sql = "SELECT addressID, ip, workstationID FROM Addresses WHERE addressID = ?";

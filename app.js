@@ -34,10 +34,13 @@ app.get('/', function (req, res) {
 app.get('/index.html', function (req, res) {
 	res.render('index.handlebars');
 });
+
 app.use('/workstations', require('./workstations.js'));
 app.use('/controls', require('./controls.js'));
 app.use('/addresses', require('./addresses.js'));
 app.use('/applications', require('./applications.js'));
+app.use('/app_instances', require('./app_instances.js'));
+
 /*
 app.get('/workstations', function (req, res) {
 	var testData = [
@@ -84,6 +87,8 @@ app.get('/controls', function (req, res) {
 	res.render('controls.handlebars', context);
 });
 */
+
+/*
 app.get('/app_instances', function (req, res) {
 	var testData = [
 		{ 'appInstanceID': 1, 'workstationID': 1, 'appID': 1 },
@@ -93,6 +98,8 @@ app.get('/app_instances', function (req, res) {
 	context.dataList = testData
 	res.render('app_instances.handlebars', context);
 });
+*/
+
 app.get('/control_instances', function (req, res) {
 	var testData = [
 		{ 'controlInstanceID': 1, 'controlID': 1, 'guideID': 1 },

@@ -8,10 +8,20 @@
 	<h2>
 		Add a new Application_Instance:
 	</h2>
-	<form action="">
-		<input type="number" placeholder="workstationID">
-		<input type="number" placeholder="appID">
-		<input type="submit" value="Add application_instance">
+	<form action="/app_instances" method="post">
+		<label for="workstationID">workstationID:</label>
+		<select name="workstationID">
+			{{#each workstations}}
+			<option value="{{workstationID}}">{{workstationID}} - {{hostName}}</option>
+			{{/each}}
+		</select>
+		<label for="appID">appID:</label>
+		<select name="appID">
+			{{#each applications}}
+			<option value="{{appID}}">{{appID}} - {{appName}}</option>
+			{{/each}}
+		</select>
+		<input type="submit" value="Submit">
 	</form>
 </div>
 <div>
@@ -27,13 +37,15 @@
 			</tr>
 		</thead>
 		<tbody>
-			{{#each dataList}}
+			{{#each App_Instances}}
 			<tr>
 				<td style="border: 1px solid black">{{this.appInstanceID}}</td>
 				<td style="border: 1px solid black">{{this.workstationID}}</td>
 				<td style="border: 1px solid black">{{this.appID}}</td>
-				<td style="border: 1px solid black"><button>Edit</button></td>
-				<td style="border: 1px solid black"><button>Delete</button></td>
+				<td style="border: 1px solid black"><a href="/app_instances/{{this.appInstanceID}}">Update</a></td>
+				<td style="border: 1px solid black" onclick="deleteApp_Instance({{this.appInstanceID}})">
+					<button>Delete</button>
+				</td>
 			</tr>
 			{{/each}}
 		</tbody>
