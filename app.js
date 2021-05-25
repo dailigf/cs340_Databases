@@ -18,15 +18,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var db = require('./database/db_connector');
 app.set('mysql', db);
 
-/*
-	ROUTES
-*/
-/*
-app.get('/', function(req, res)                 // This is the basic syntax for what is called a 'route'
-	{
-		res.send("The server is running!")      // This function literally sends the string "The server is running!" to the computer
-	});                                         // requesting the web site.
-*/
 app.get('/', function (req, res) {
 	res.render('index.handlebars');
 });
@@ -37,18 +28,8 @@ app.get('/index.html', function (req, res) {
 app.use('/workstations', require('./workstations.js'));
 app.use('/controls', require('./controls.js'));
 app.use('/addresses', require('./addresses.js'));
-/*
-app.get('/workstations', function (req, res) {
-	var testData = [
-		{ 'workstationID': 1, 'hostName': 'dailigMac', 'os': 'MacOS' },
-		{ 'workstationID': 2, 'hostName': 'walshMac', 'os': 'MacOS' }
-	];
+app.use('/control_instances', require('./control_instances.js'));
 
-	var context = {};
-	context.dataList = testData
-	res.render('workstations.handlebars', context);
-});
-*/
 app.get('/applications', function (req, res) {
 	var testData = [
 		{ 'appID': 1, 'appName': 'spotify', 'appType': 'music' },
@@ -69,17 +50,6 @@ app.get('/guides', function (req, res) {
 	context.dataList = testData
 	res.render('guides.handlebars', context);
 });
-/*
-app.get('/controls', function (req, res) {
-	var testData = [
-		{ 'controlID': 1, 'securityControlNumber': 1, 'controlName': 'control1', 'description': 'This control does this!' },
-		{ 'controlID': 2, 'securityControlNumber': 2, 'controlName': 'control2', 'description': 'This control does this!' }
-	];
-	var context = {};
-	context.dataList = testData
-	res.render('controls.handlebars', context);
-});
-*/
 app.get('/app_instances', function (req, res) {
 	var testData = [
 		{ 'appInstanceID': 1, 'workstationID': 1, 'appID': 1 },
@@ -89,27 +59,6 @@ app.get('/app_instances', function (req, res) {
 	context.dataList = testData
 	res.render('app_instances.handlebars', context);
 });
-app.get('/control_instances', function (req, res) {
-	var testData = [
-		{ 'controlInstanceID': 1, 'controlID': 1, 'guideID': 1 },
-		{ 'controlInstanceID': 2, 'controlID': 2, 'guideID': 2 }
-	];
-	var context = {};
-	context.dataList = testData
-	res.render('control_instances.handlebars', context);
-});
-/*
-app.get('/addresses', function (req, res) {
-	var testData = [
-		{ 'addressID': 1, 'ip': '192.168.1.2', 'workstationID': 1 },
-		{ 'addressID': 2, 'ip': '192.168.1.3', 'workstationID': 2 },
-		{ 'addressID': 3, 'ip': '192.168.1.4', 'workstationID': null }
-	];
-	var context = {};
-	context.dataList = testData
-	res.render('addresses.handlebars', context);
-});
-*/
 /*
 	LISTENER
 */
