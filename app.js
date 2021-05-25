@@ -37,6 +37,7 @@ app.get('/index.html', function (req, res) {
 app.use('/workstations', require('./workstations.js'));
 app.use('/controls', require('./controls.js'));
 app.use('/addresses', require('./addresses.js'));
+app.use('/applications', require('./applications.js'));
 /*
 app.get('/workstations', function (req, res) {
 	var testData = [
@@ -49,6 +50,8 @@ app.get('/workstations', function (req, res) {
 	res.render('workstations.handlebars', context);
 });
 */
+
+/*
 app.get('/applications', function (req, res) {
 	var testData = [
 		{ 'appID': 1, 'appName': 'spotify', 'appType': 'music' },
@@ -59,6 +62,7 @@ app.get('/applications', function (req, res) {
 	context.dataList = testData
 	res.render('applications.handlebars', context);
 });
+*/
 
 app.get('/guides', function (req, res) {
 	var testData = [

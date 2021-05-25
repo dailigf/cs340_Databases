@@ -8,10 +8,12 @@
 	<h2>
 		Add a new Application:
 	</h2>
-	<form action="">
-		<input type="text" placeholder="Name of application">
-		<input type="text" placeholder="Type of application">
-		<input type="submit" value="Add application">
+	<form action="/applications" method="POST">
+		<label for="appName">appName: </label>
+		<input type="text" name="appName" placeholder="Name of application">
+		<label for="appType">appType: </label>
+		<input type="text" name="appType" placeholder="Type of application">
+		<input type="submit" value="Submit">
 	</form>
 </div>
 <div>
@@ -27,14 +29,15 @@
 			</tr>
 		</thead>
 		<tbody>
-			{{#each dataList}}
+			{{#each applications}}
 			<tr>
 				<td style="border: 1px solid black">{{this.appID}}</td>
 				<td style="border: 1px solid black">{{this.appName}}</td>
 				<td style="border: 1px solid black">{{this.appType}}</td>
-				<td style="border: 1px solid black"><button>Edit</button></td>
-				<td style="border: 1px solid black"><button>Delete</button></td>
-
+				<td style="border: 1px solid black"><a href="/applications/{{this.appID}}">Update</a></td>
+				<td style="border: 1px solid black" onclick="deleteApplication({{this.appID}})">
+					<button>Delete</button>
+				</td>
 			</tr>
 			{{/each}}
 		</tbody>
