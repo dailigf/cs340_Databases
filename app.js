@@ -32,7 +32,7 @@ app.use('/addresses', require('./addresses.js'));
 app.use('/applications', require('./applications.js'));
 app.use('/app_instances', require('./app_instances.js'));
 app.use('/control_instances', require('./control_instances.js'));
-
+app.use('/guides', require('./guides.js'));
 /*
 app.get('/workstations', function (req, res) {
 	var testData = [
@@ -59,6 +59,7 @@ app.get('/applications', function (req, res) {
 });
 */
 
+/*
 app.get('/guides', function (req, res) {
 	var testData = [
 		{ 'guideID': 1, 'guideName': 'guide1', 'appID': 1 },
@@ -68,6 +69,7 @@ app.get('/guides', function (req, res) {
 	context.dataList = testData
 	res.render('guides.handlebars', context);
 });
+*/
 /*
 app.get('/controls', function (req, res) {
 	var testData = [

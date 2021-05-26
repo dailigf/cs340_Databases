@@ -3,8 +3,6 @@ window.addEventListener('load', function(){
 	btn.addEventListener('click', function(e){
 		e.preventDefault();
 		const searchString = document.querySelector('#searchString').value;
-		alert('you clicked on search');
-		alert(searchString);
 		$.ajax({
 			url:	  '/workstations/search',
 			type: 	  'GET',

@@ -3,7 +3,6 @@ function redirect(id) {
 	window.location.href = url;
 };
 function updateWorkstation(id) {
-	alert('you called updateWorkstation');
 	$.ajax({
 		url: '/workstations/' + id,
 		type: 'POST',
