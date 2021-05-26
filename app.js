@@ -18,15 +18,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var db = require('./database/db_connector');
 app.set('mysql', db);
 
-/*
-	ROUTES
-*/
-/*
-app.get('/', function(req, res)                 // This is the basic syntax for what is called a 'route'
-	{
-		res.send("The server is running!")      // This function literally sends the string "The server is running!" to the computer
-	});                                         // requesting the web site.
-*/
 app.get('/', function (req, res) {
 	res.render('index.handlebars');
 });
@@ -40,6 +31,7 @@ app.use('/controls', require('./controls.js'));
 app.use('/addresses', require('./addresses.js'));
 app.use('/applications', require('./applications.js'));
 app.use('/app_instances', require('./app_instances.js'));
+app.use('/control_instances', require('./control_instances.js'));
 
 /*
 app.get('/workstations', function (req, res) {
@@ -99,7 +91,7 @@ app.get('/app_instances', function (req, res) {
 	res.render('app_instances.handlebars', context);
 });
 */
-
+/*
 app.get('/control_instances', function (req, res) {
 	var testData = [
 		{ 'controlInstanceID': 1, 'controlID': 1, 'guideID': 1 },
@@ -109,6 +101,7 @@ app.get('/control_instances', function (req, res) {
 	context.dataList = testData
 	res.render('control_instances.handlebars', context);
 });
+*/
 /*
 app.get('/addresses', function (req, res) {
 	var testData = [

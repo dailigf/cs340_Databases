@@ -8,10 +8,18 @@
 	<h2>
 		Add a new Control_Instance:
 	</h2>
-	<form action="">
-		<input type="number" placeholder="controlID">
-		<input type="text" placeholder="guideID">
-		<input type="submit" value="Add Control_Instance">
+	<form action="/control_instances" method="post">
+		<select name="controlID">
+			{{#each controls}}
+			<option value={{controlID}}>{{controlName}}</option>
+			{{/each}}
+		</select>
+		<select name="guideID">
+			{{#each guides}}
+			<option value={{guideID}}>{{guideName}}</option>
+			{{/each}}
+		</select>
+		<input type="submit" value="Submit">
 	</form>
 </div>
 <div>
@@ -19,21 +27,25 @@
 	<table style="border 1px solid black">
 		<thead>
 			<tr>
-				<th style="border: 1px solid black">controlInstanceID</th>
-				<th style="border: 1px solid black">controlID</th>
-				<th style="border: 1px solid black">guideID</th>
-				<th style="border: 1px solid black">Edit</th>
+				<th style="border: 1px solid black">Control Instance ID</th>
+				<th style="border: 1px solid black;display:none">controlID</th>
+				<th style="border: 1px solid black">Security Control ID</th>
+				<th style="border: 1px solid black">Control Name</th>
+				<th style="border: 1px solid black;display:none">guideID</th>
+				<th style="border: 1px solid black">Guide Name</th>
 				<th style="border: 1px solid black">Delete</th>
 			</tr>
 		</thead>
 		<tbody>
-			{{#each dataList}}
+			{{#each controlInstance}}
 			<tr>
 				<td style="border: 1px solid black">{{this.controlInstanceID}}</td>
-				<td style="border: 1px solid black">{{this.controlID}}</td>
-				<td style="border: 1px solid black">{{this.guideID}}</td>
-				<td style="border: 1px solid black"><button>Edit</button></td>
-				<td style="border: 1px solid black"><button>Delete</button></td>
+				<td style="border: 1px solid black;display: none">{{this.controlID}}</td>
+				<td style="border: 1px solid black">{{this.securityControlID}}</td>
+				<td style="border: 1px solid black">{{this.controlName}}</td>
+				<td style="border: 1px solid black;display: none">{{this.guideID}}</td>
+				<td style="border: 1px solid black">{{this.guideName}}</td>
+				<td style="border: 1px solid black" onclick="deleteControlInstance({{this.controlInstanceID}})"><button>Delete</button></td>
 			</tr>
 			{{/each}}
 		</tbody>
