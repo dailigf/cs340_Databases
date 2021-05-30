@@ -3,6 +3,8 @@ module.exports = function(){
 	var router = express.Router();
 
 	function getControlInstances(res, mysql, context, complete){
+		/*Function creates a composite table which joins Control_Instances, Controls, and Guides.
+		 * Information is used to populate the root page '/control_instances'*/
 		var query = "SELECT Control_Instances.controlInstanceID AS controlInstanceID, Control_Instances.controlID AS controlID, Controls.securityControlID AS securityControlID, " +
 			"Controls.controlName AS controlName, Control_Instances.guideID AS guideID, Guides.guideName AS guideName FROM Control_Instances " +
 			"JOIN Controls ON Control_Instances.controlID = Controls.controlID "+
@@ -18,6 +20,7 @@ module.exports = function(){
 	};
 
 	function getControls(res, mysql, context, complete){
+		/*Function used to get the controls from teh Controls table*/
 		var query = "SELECT controlID, controlName FROM Controls";
 		mysql.pool.query(query, function(error, results, fields){
 			if(error){
@@ -30,6 +33,7 @@ module.exports = function(){
 	};
 
 	function getGuides(res, mysql, context, complete){
+		/*Function used to get the guides from the Guides table*/
 		var query = "SELECT guideID, guideName FROM Guides";
 		mysql.pool.query(query, function(error, results, fields){
 			if(error){
@@ -42,6 +46,7 @@ module.exports = function(){
 	};
 	
 	function addControlInstance(req, res, mysql, context, complete){
+		/*Function used to add a new entry into the Control_Instances Table. */
 		var query = "INSERT INTO Control_Instances (controlID, guideID) " +
 			"VALUES (?, ?)";
 		var inserts = [req.body.controlID, req.body.guideID]
@@ -55,6 +60,7 @@ module.exports = function(){
 
 	}
 	function deleteControlInstace(req, mysql, id, complete){
+		/*Function used to delete an entry from the Conrol_Instances Table*/
 		var query = "DELETE FROM Control_Instances WHERE controlInstanceID = ?";
 		var inserts = [id];
 		mysql.pool.query(query, inserts, function(error, results, fields){
@@ -68,6 +74,8 @@ module.exports = function(){
 
 
 	router.get('/', function(req, res){
+		/*Root route for conrol instances.  Retrieves information from Control_Instances, Controls,
+		 * and Guides for the handlebars template to display */
 		var callbackcount = 0;
 		var context = {};
 		var mysql = req.app.get('mysql');
@@ -85,7 +93,8 @@ module.exports = function(){
 	});
 
 	router.post('/', function(req, res){
-		console.log('adding new control instance');
+		/*Route that is invoked when adding a new control.  Will update the Control_Instances Table
+		 * re-renders the 'control_instances' page */
 		console.log(req.body);
 		var callbackcount = 0;
 		var context = {};
@@ -106,6 +115,7 @@ module.exports = function(){
 
 
 	router.delete('/:id', function(req, res){
+		/*Route that is invoked when deleting a control instance*/
 		console.log('inside router.delete');
 		var callbackcount = 0;
 		var context = {}

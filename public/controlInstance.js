@@ -1,5 +1,5 @@
 function deleteControlInstance(id){
-	alert("You will delete Control Instance: " + id);
+	/*Function called when clicking the delete button for a target controlInstance*/
 	$.ajax({
         	url: '/control_instances/' + id,
         	type: 'DELETE',
