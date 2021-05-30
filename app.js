@@ -36,6 +36,7 @@ app.get('/index.html', function (req, res) {
 });
 app.use('/workstations', require('./workstations.js'));
 app.use('/controls', require('./controls.js'));
+app.use('/guides', require('./guides.js'));
 /*
 app.get('/workstations', function (req, res) {
 	var testData = [
@@ -59,6 +60,7 @@ app.get('/applications', function (req, res) {
 	res.render('applications.handlebars', context);
 });
 
+/*
 app.get('/guides', function (req, res) {
 	var testData = [
 		{ 'guideID': 1, 'guideName': 'guide1', 'appID': 1 },
@@ -68,6 +70,8 @@ app.get('/guides', function (req, res) {
 	context.dataList = testData
 	res.render('guides.handlebars', context);
 });
+*/
+
 /*
 app.get('/controls', function (req, res) {
 	var testData = [
