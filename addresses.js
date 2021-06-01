@@ -73,6 +73,7 @@ module.exports = function () {
     router.get('/:id', function (req, res) {
         /*Route that is used when updating a target address.  It will perform an sql query to get
          * information for a target address and then redirect to the updateAddress page*/
+
         console.log('inside /address/id');
         callbackcount = 0;
         context = {};
@@ -121,11 +122,11 @@ module.exports = function () {
         sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
             if (error) {
                 console.log(error.errno);
-                if (error.errno == 1062){
+                if (error.errno == 1062) {
                     res.write("Opps, you entered a duplicate row!!");
                     res.write(JSON.stringify(error));
                     res.end();
-                }else{
+                } else {
                     res.write(JSON.stringify(error));
                     res.end();
                 }
@@ -139,6 +140,7 @@ module.exports = function () {
     router.delete('/:id', function (req, res) {
         /*Route that is used when deleting a target address.  It will perform an sql query to DELETE
           information for a target address and then redirect to the Addresses page*/
+
         console.log('inside router.delete');
         var mysql = req.app.get('mysql');
         var sql = "DELETE FROM Addresses WHERE addressID = ?";

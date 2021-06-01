@@ -36,6 +36,7 @@ module.exports = function () {
 
     function deleteApp(res, mysql, id, complete) {
         /* Function will be used to delete an application from the Applications table.*/
+
         var sql = "DELETE FROM Applications WHERE appID = ?";
         var inserts = [id];
         mysql.pool.query(sql, inserts, function (error, results, fields) {
@@ -49,6 +50,7 @@ module.exports = function () {
 
     function deleteAppInstances(res, mysql, id, complete) {
         /* Function will be used to delete the entries in the App_Instances table.*/
+
         var sql = "DELETE FROM App_Instances WHERE appID = ?";
         var inserts = [id];
         mysql.pool.query(sql, inserts, function (error, results, fields) {
@@ -138,6 +140,7 @@ module.exports = function () {
         /*When a user deletes an application, browser will 'DELETE' to this route.
          *Updates the Applications and App_Instances Table.
          *It then refreshes the /applications page */
+
         console.log('inside router.delete');
         console.log(req.params.id);
         var callbackcount = 0;
