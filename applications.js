@@ -3,6 +3,9 @@ module.exports = function () {
     var router = express.Router();
 
     function getApplications(res, mysql, context, complete) {
+        /*Helper function used to get all the apps in the Applications Table, assigns it to context
+         * Which is then used by the handlebars page to display the Applications*/
+
         var query = "SELECT appID, appName, appType FROM Applications";
         mysql.pool.query(query, function (error, results, fields) {
             if (error) {
@@ -16,6 +19,9 @@ module.exports = function () {
     }
 
     function getApplication(res, mysql, context, id, complete) {
+        /*Helper function used to get a specific app in the Applications Table by id, assigns it to context
+         * Which is then used by the handlebars page to display the app*/
+
         var sql = "SELECT * FROM Applications WHERE appID = ?";
         var inserts = [id];
         mysql.pool.query(sql, inserts, function (error, results, fields) {
@@ -28,12 +34,12 @@ module.exports = function () {
         });
     }
 
-    function deleteApp(res, mysql, id, complete){
+    function deleteApp(res, mysql, id, complete) {
         /* Function will be used to delete an application from the Applications table.*/
         var sql = "DELETE FROM Applications WHERE appID = ?";
         var inserts = [id];
-        mysql.pool.query(sql, inserts, function(error, results, fields){
-            if(error){
+        mysql.pool.query(sql, inserts, function (error, results, fields) {
+            if (error) {
                 res.write(JSON.stringify(error));
                 res.end();
             }
@@ -41,12 +47,12 @@ module.exports = function () {
         });
     };
 
-    function deleteAppInstances(res, mysql, id, complete){
+    function deleteAppInstances(res, mysql, id, complete) {
         /* Function will be used to delete the entries in the App_Instances table.*/
         var sql = "DELETE FROM App_Instances WHERE appID = ?";
         var inserts = [id];
-        mysql.pool.query(sql, inserts, function(error, results, fields){
-            if(error){
+        mysql.pool.query(sql, inserts, function (error, results, fields) {
+            if (error) {
                 res.write(JSON.stringify(error));
                 res.end();
             }
@@ -55,6 +61,9 @@ module.exports = function () {
     };
 
     router.get('/', function (req, res) {
+        /*Route that is used when viewing the Applications table.  It will perform a sql query to get
+         * information for the applications and then display them*/
+
         console.log("inside router.get for applications");
         var callbackcount = 0;
         var context = {};
@@ -70,6 +79,9 @@ module.exports = function () {
     });
 
     router.get('/:id', function (req, res) {
+        /*Route that is used when updating a target application.  It will perform a sql query to get
+         * information for a target application and then redirect to the updateApplication page*/
+
         console.log('inside /application/id');
         callbackcount = 0;
         context = {};
@@ -84,8 +96,11 @@ module.exports = function () {
         }
 
     });
-    
+
     router.post('/:id', function (req, res) {
+        /*Route that is used when updating a target application.  It will perform a sql query to UPDATE
+          information for a target application and then redirect to the applications page*/
+
         var mysql = req.app.get('mysql');
         var sql = "UPDATE Applications SET appName = ?, appType = ? WHERE appID = ?";
         var inserts = [req.body.appName, req.body.appType, req.params.id];
@@ -101,6 +116,9 @@ module.exports = function () {
     });
 
     router.post('/', function (req, res) {
+        /*Route that is used when inserting a new application.  It will perform a sql query to INSERT
+          information for a new application and then redirect to the applications page*/
+
         console.log('adding a new application');
         console.log(req.body);
         var mysql = req.app.get('mysql');
@@ -119,7 +137,7 @@ module.exports = function () {
     router.delete('/:id', function (req, res) {
         /*When a user deletes an application, browser will 'DELETE' to this route.
          *Updates the Applications and App_Instances Table.
-         *It then refreshes the /applications page */ 
+         *It then refreshes the /applications page */
         console.log('inside router.delete');
         console.log(req.params.id);
         var callbackcount = 0;
@@ -129,9 +147,9 @@ module.exports = function () {
         deleteAppInstances(res, mysql, req.params.id, complete);
         deleteApp(res, mysql, req.params.id, complete);
         getApplications(res, mysql, context, complete);
-        function complete(){
+        function complete() {
             callbackcount++;
-            if(callbackcount >= 3){
+            if (callbackcount >= 3) {
                 res.render('applications.handlebars', context);
             }
         }
