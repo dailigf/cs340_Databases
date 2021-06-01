@@ -3,6 +3,9 @@ module.exports = function(){
 	var router = express.Router();
 
 	function getApplications(res, mysql, context, complete){
+		/*Helper function, used to retrieve a Applications that do not have an associated Guide
+		 * This information is used to populate the drop down in the Add Guide section of the
+		 *'/guides' route.*/
 		console.log('getting  null Applications');
 		var query = "SELECT Applications.appID, Applications.appName, Guides.guideID, Guides.guideID FROM Applications " + 
 			"LEFT JOIN Guides ON Applications.appID = Guides.appID WHERE guideID IS NULL";
@@ -17,7 +20,7 @@ module.exports = function(){
 	};
 
 	function getAvailableApps(res, mysql, context, complete){
-		console.log('getting all Applications');
+		/*Helper functio that retrieves all applications from teh Applications Table*/
 		var query = "SELECT Applications.appID, Applications.appName FROM Applications";
 		mysql.pool.query(query, function(error, results, fields){
 			if(error){
@@ -31,6 +34,7 @@ module.exports = function(){
 	};
 
 	function getGuides(res, mysql, context, complete){
+		/*Helper function that retrieves all of the guides from the Guides Table*/
 		var query = "SELECT guideID, guideName, appID FROM Guides";
 		mysql.pool.query(query, function(error, results, fields){
 			if(error){
@@ -43,9 +47,7 @@ module.exports = function(){
 	};
 
 	function addGuide(res, mysql, req, context, complete){
-		console.log('inside addGuide()');
-		console.log(req.body.appID);
-		console.log(req.body.guideName);
+		/*Function that is used to insert a new guide into the Guides table*/
 		var sql1 = "INSERT INTO Guides (guideName, appID) VALUES " +
 			"(?, ?)";
 		var inserts1 = [req.body.guideName, req.body.appID];
@@ -59,10 +61,9 @@ module.exports = function(){
 	};
 
 	function deleteControlInstances(res, mysql, id, context, complete){
+		/*Function used to delete a target guide from the Control_Instances Table*/
 		var sql1 = "DELETE FROM Control_Instances WHERE guideID = ?";
 		var inserts1 = [id];
-		console.log('inside deleteControlInstances');
-		console.log(id);
 		mysql.pool.query(sql1, inserts1, function(error, results, fields){
 			if(error){
 				res.write(JSON.stringify(error));
@@ -73,8 +74,7 @@ module.exports = function(){
 	};
 
 	function deleteGuide(res, mysql, id, context, complete){
-		console.log('Inside deleteGuide');
-		console.log(id);
+		/*Deletes a target guide form the Guides Table. */
 		var sql1 = "DELETE FROM Guides WHERE guideID = ?";
 		var inserts1 = [id];
 		mysql.pool.query(sql1, inserts1, function(error, results, fields){
@@ -87,6 +87,8 @@ module.exports = function(){
 	};
 
 	function getGuide(res, mysql, context, id, complete){
+		/*Sql Query creates a composite table which joins the Guides and Applications Table. It maps
+		 * guides to an application. */
 		var sql = "SELECT Guides.guideID, Guides.guideName, Applications.appID, Applications.appName, Applications.appType FROM Guides " +
 			"JOIN Applications ON Guides.appID = Applications.appID " +
 			"Where Guides.guideID = ?";
@@ -102,6 +104,7 @@ module.exports = function(){
     	}
 
 	function updateGuide(res, mysql, req, context, complete){
+		/*Updates a target guide with user supplied input from the form*/
 		var sql1 = "UPDATE Guides " +
 			"SET guideName = ?, appID = (SELECT appID FROM Applications WHERE appName = ?) " +
 			"WHERE guideID = ?";
@@ -118,6 +121,8 @@ module.exports = function(){
 
 
 	router.get('/', function(req, res){
+		/* Root route for '/guides'.  Runs two sql queries to get Applications that do not have a
+		 * guide for the 'Add Guide' Section and get all the Guides to display on the page */
 		var callbackcount = 0;
 		var context = {};
 		var mysql = req.app.get('mysql');
@@ -134,7 +139,9 @@ module.exports = function(){
 	});
 
 	router.get('/:id', function(req, res){
-		console.log('inside /guides/id');
+		/*Route that is invoked when updating a target guide, will retrieve information about 
+		 * a specific guide and will also get a list of Application that do not have a guide 
+		 * asigned.  Will redirect to '/updateGuide' page*/
 		callbackcount = 0;
 		context = {};
 		context.jsscripts = ["selectApp.js", "guides.js"];
@@ -155,10 +162,9 @@ module.exports = function(){
 	});
 
 	router.post('/:id', function(req, res){
+		/*Route that is invoked from within the '/updateGuide' page.  Will update a target guide
+		 * with user supplied information in the form*/
 		console.log('updating the current guide');
-		console.log(req.params.id);
-		console.log(req.body.guideName);
-		console.log(req.body.appName);
 		callbackcount = 0;
 		context = {};
 		context.jsscripts = ["controls.jss"];
@@ -178,8 +184,7 @@ module.exports = function(){
 	});
 
 	router.post('/', function(req, res){
-		console.log('adding a new guide');
-		console.log(req.body);
+		/*Route that is invoked when adding a new guide.  Insert a new entry into the Guides table.*/
 		var callbackcount = 0;
 		var context = {};
 		var mysql = req.app.get('mysql');
@@ -198,8 +203,9 @@ module.exports = function(){
 	});
 
 	router.delete('/:id', function(req, res){
-		console.log('inside router.delete');
-		console.log(req.params.id);
+		/*Route that invoked when deleteing a guide.  Will delete the control from the 
+		 * Control_Instances Table and then delete the control from the Controls Table.
+		 * Will re-render the root '/guides' page*/
 		callbackcount = 0;
 		context = {};
 		context.jsscripts = ["guides.jss"];
