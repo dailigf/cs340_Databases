@@ -121,11 +121,11 @@ module.exports = function () {
         var inserts = [req.body.ip, req.body.workstationID];
         sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
             if (error) {
-                console.log(error.errno);
+                console.log(error)
                 if (error.errno == 1062) {
-                    res.write("Opps, you entered a duplicate row!!");
-                    res.write(JSON.stringify(error));
-                    res.end();
+                    context = {};
+                    context.error = error;
+                    res.render('errors.handlebars', context);
                 } else {
                     res.write(JSON.stringify(error));
                     res.end();
