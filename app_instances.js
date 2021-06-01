@@ -148,9 +148,9 @@ module.exports = function () {
 
         console.log('inside router.delete');
         var mysql = req.app.get('mysql');
-        var sql = "DELETE FROM App_Instances WHERE appInstanceID = ?";
+        var sqlQ = "DELETE FROM App_Instances WHERE appInstanceID = ?";
         var inserts = [req.params.id];
-        sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
+        sql = mysql.pool.query(sqlQ, inserts, function (error, results, fields) {
             if (error) {
                 res.write(JSON.stringify(error));
                 res.status(400);

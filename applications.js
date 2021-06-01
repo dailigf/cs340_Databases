@@ -34,6 +34,31 @@ module.exports = function () {
         });
     }
 
+    function deleteControlInstances(res, mysql, id, complete) {
+        /* Function will be used to delete a Control_Instance from the Control_Instance Table.*/
+        var sql = "DELETE FROM Control_Instances WHERE guideID = (SELECT guideID FROM Guides WHERE appID = ?)";
+        var inserts = [id];
+        mysql.pool.query(sql, inserts, function (error, results, fields) {
+            if (error) {
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            complete();
+        });
+    }
+
+    function deleteGuides(res, mysql, id, complete) {
+        /* Function will be used to delete a Guide from the Guides Table*/
+        var sql = "DELETE FROM Guides WHERE appID = ?";
+        var inserts = [id];
+        mysql.pool.query(sql, inserts, function (error, results, fields) {
+            if (error) {
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            complete();
+        });
+    }
     function deleteApp(res, mysql, id, complete) {
         /* Function will be used to delete an application from the Applications table.*/
 
@@ -147,12 +172,14 @@ module.exports = function () {
         var mysql = req.app.get('mysql');
         var context = {};
         context.jsscripts = ["updateApplications.js"];
+        deleteControlInstances(res, mysql, req.params.id, complete);
+        deleteGuides(res, mysql, req.params.id, complete);
         deleteAppInstances(res, mysql, req.params.id, complete);
         deleteApp(res, mysql, req.params.id, complete);
         getApplications(res, mysql, context, complete);
         function complete() {
             callbackcount++;
-            if (callbackcount >= 3) {
+            if (callbackcount >= 5) {
                 res.render('applications.handlebars', context);
             }
         }
