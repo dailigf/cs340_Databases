@@ -97,10 +97,12 @@ module.exports = function () {
         var inserts = [req.body.appID, req.body.workstationID];
         sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
             if (error) {
-                res.write(JSON.stringify(error));
-                res.end();
+                context = {};
+                context.error = error;
+                context.string = JSON.stringify(error);
+                res.render('errors.handlebars', context);
             } else {
-                res.redirect('/app_instances')
+                res.redirect('/app_instances');
             }
         });
     });
@@ -134,8 +136,10 @@ module.exports = function () {
         var inserts = [req.body.appID, req.body.workstationID, req.params.id]
         sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
             if (error) {
-                res.write(JSON.stringify(error));
-                res.end();
+                context = {};
+                context.error = error;
+                context.string = JSON.stringify(error);
+                res.render('errors.handlebars', context);
             } else {
                 res.redirect('/app_instances');
             }
@@ -152,11 +156,12 @@ module.exports = function () {
         var inserts = [req.params.id];
         sql = mysql.pool.query(sqlQ, inserts, function (error, results, fields) {
             if (error) {
-                res.write(JSON.stringify(error));
-                res.status(400);
-                res.end();
+                context = {};
+                context.error = error;
+                context.string = JSON.stringify(error);
+                res.render('errors.handlebars', context);
             } else {
-                res.status(202).end();
+                res.redirect('/app_instances');
             }
         });
     })

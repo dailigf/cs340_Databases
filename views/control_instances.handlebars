@@ -1,19 +1,19 @@
 <nav class="navbar navbar-inverse">
-  	<div class="container-fluid">
-    <div class="navbar-header">
-		<a class="navbar-brand" href="http://127.0.0.1:31337/">WebSiteName</a>
-    </div>
-    <ul class="nav navbar-nav">
-  		<li><a href="http://127.0.0.1:31337/">Home</a></li>
-  		<li><a href="http://127.0.0.1:31337/addresses">Addresses</a></li>
-      	<li><a href="http://127.0.0.1:31337/applications">Applications</a></li>
-	  	<li><a href="http://127.0.0.1:31337/app_instances">Application_Instances</a></li>
-	  	<li><a href="http://127.0.0.1:31337/controls">Controls</a></li>
-		<li class="active"><a href="http://127.0.0.1:31337/control_instances">Control_Instances</a></li>
-	  	<li><a href="http://127.0.0.1:31337/guides">Guides</a></li>
-	  	<li><a href="http://127.0.0.1:31337/workstations">Workstations</a></li>
-    </ul>
-  	</div>
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="http://127.0.0.1:31337/">WebSiteName</a>
+		</div>
+		<ul class="nav navbar-nav">
+			<li><a href="http://127.0.0.1:31337/">Home</a></li>
+			<li><a href="http://127.0.0.1:31337/addresses">Addresses</a></li>
+			<li><a href="http://127.0.0.1:31337/applications">Applications</a></li>
+			<li><a href="http://127.0.0.1:31337/app_instances">Application_Instances</a></li>
+			<li><a href="http://127.0.0.1:31337/controls">Controls</a></li>
+			<li class="active"><a href="http://127.0.0.1:31337/control_instances">Control_Instances</a></li>
+			<li><a href="http://127.0.0.1:31337/guides">Guides</a></li>
+			<li><a href="http://127.0.0.1:31337/workstations">Workstations</a></li>
+		</ul>
+	</div>
 </nav>
 
 <h1>Control_Instances Information</h1>
@@ -29,12 +29,12 @@
 	<form action="/control_instances" method="post">
 		<select name="controlID">
 			{{#each controls}}
-			<option value={{controlID}}>{{controlName}}</option>
+			<option value={{controlID}}>{{controlID}} - {{controlName}}</option>
 			{{/each}}
 		</select>
 		<select name="guideID">
 			{{#each guides}}
-			<option value={{guideID}}>{{guideName}}</option>
+			<option value={{guideID}}>{{guideID}} - {{guideName}}</option>
 			{{/each}}
 		</select>
 		<input type="submit" value="Submit">
@@ -63,7 +63,8 @@
 				<td style="border: 1px solid black">{{this.controlName}}</td>
 				<td style="border: 1px solid black;display: none">{{this.guideID}}</td>
 				<td style="border: 1px solid black">{{this.guideName}}</td>
-				<td style="border: 1px solid black" onclick="deleteControlInstance({{this.controlInstanceID}})"><button>Delete</button></td>
+				<td style="border: 1px solid black" onclick="deleteControlInstance({{this.controlInstanceID}})">
+					<button>Delete</button></td>
 			</tr>
 			{{/each}}
 		</tbody>
