@@ -1,8 +1,9 @@
+<!-->
+simple Bootstrap Navbar from https://www.w3schools.com/bootstrap/bootstrap_navbar.asp
+<-->
 <nav class="navbar navbar-inverse">
 	<div class="container-fluid">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="http://127.0.0.1:31337/">WebSiteName</a>
-		</div>
+		<div class="navbar-header"></div>
 		<ul class="nav navbar-nav">
 			<li><a href="http://127.0.0.1:31337/">Home</a></li>
 			<li><a href="http://127.0.0.1:31337/addresses">Addresses</a></li>
@@ -64,7 +65,8 @@
 				<td style="border: 1px solid black;display: none">{{this.guideID}}</td>
 				<td style="border: 1px solid black">{{this.guideName}}</td>
 				<td style="border: 1px solid black" onclick="deleteControlInstance({{this.controlInstanceID}})">
-					<button>Delete</button></td>
+					<button>Delete</button>
+				</td>
 			</tr>
 			{{/each}}
 		</tbody>
