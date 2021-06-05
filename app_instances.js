@@ -156,13 +156,14 @@ module.exports = function () {
         var inserts = [req.params.id];
         sql = mysql.pool.query(sqlQ, inserts, function (error, results, fields) {
             if (error) {
+                console.log('This means there was an error..')
                 context = {};
                 context.error = error;
                 context.string = JSON.stringify(error);
                 res.render('errors.handlebars', context);
-            } else {
-                res.redirect('/app_instances');
             }
+            console.log('right before it should reload');
+            res.status(202).end();
         });
     })
     return router;
